@@ -2,9 +2,9 @@ const Movie = require('../models/Movie');
 const axios = require('axios')
 
 exports.postMovie = (req, res) => {
-	const urla = process.env.OMDB_CONNECTION + '&t=' + req.body.title + '&';
+	const url = process.env.OMDB_CONNECTION + '&t=' + req.body.title + '&';
 	try {
-		axios.get(urla).then(async (response) => {
+		axios.get(url).then(async (response) => {
 			const movie = new Movie({
 				title: response.data.Title,
 				released: response.data.Released,
@@ -13,7 +13,7 @@ exports.postMovie = (req, res) => {
 			});
 			try {
 				const savedMovie = await movie.save();
-				res.status(200).json(savedMovie);
+				res.status(201).json(savedMovie);
 			} catch (error) {
 				res.status(400).json(error.message);
 			}

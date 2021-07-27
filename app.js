@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 const dotenv = require('dotenv');
 dotenv.config();
 
+
 try {
 	mongoose.connect(
 		process.env.DB_CONNECTION,
@@ -20,7 +21,9 @@ try {
 }
 
 const moviesRoute = require('./routes/movies.js');
+const { login } = require('./controllers/auth.js');
 app.use('/movies', moviesRoute);
+app.post('/auth', login);
 
 app.listen(3000);
 
