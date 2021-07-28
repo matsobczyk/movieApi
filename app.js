@@ -21,9 +21,15 @@ try {
 
 const moviesRoute = require('./routes/movies.js');
 const { login } = require('./controllers/auth.js');
-const { authUser } = require('./middlewares/auth.js');
-app.use('/movies', authUser, moviesRoute);
+const { auth } = require('./middlewares/auth.js');
+const checkRole  = require('./middlewares/checkRole');
+
+app.use('/movies', auth, moviesRoute);
 app.post('/auth', login);
+
+app.get('/checkUserType', auth, checkRole("premium", "basic"), (req, res) => {
+	res.json(req.user.role)
+})
 
 app.listen(3000);
 

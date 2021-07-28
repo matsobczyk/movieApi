@@ -1,5 +1,6 @@
 const { loginValidation } = require("../middlewares/validation");
 const axios = require('axios')
+const jwt = require('jsonwebtoken')
 
 //login user
 exports.login = (async (req, res) => {
@@ -22,5 +23,4 @@ exports.login = (async (req, res) => {
 	} catch (error) {
 		res.json(error.message)
 	}
-	
 });
