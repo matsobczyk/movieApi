@@ -5,7 +5,6 @@ exports.auth = (req, res, next) => {
     if(!token) return res.status(400).send('Acces Denied!');
     try{
         const verified = jwt.verify(token, process.env.JWT_SECRET);
-        console.log(verified);
         req.user = verified;
         next();
     }catch(err){

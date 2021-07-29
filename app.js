@@ -22,14 +22,16 @@ try {
 const moviesRoute = require('./routes/movies.js');
 const { login } = require('./controllers/auth.js');
 const { auth } = require('./middlewares/auth.js');
-const checkRole  = require('./middlewares/checkRole');
+const checkRole = require('./middlewares/checkRole');
+const { resetPostMovieLimiter } = require('./middlewares/rateLimit.js');
 
 app.use('/movies', auth, moviesRoute);
 app.post('/auth', login);
-
 app.get('/checkUserType', auth, checkRole("premium", "basic"), (req, res) => {
 	res.json(req.user.role)
 })
+
+resetPostMovieLimiter;
 
 app.listen(3000);
 
