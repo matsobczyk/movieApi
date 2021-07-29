@@ -7,7 +7,7 @@ exports.login = (async (req, res) => {
 	
 	const user = await axios({
 		method: 'post',
-		url: 'http://auth:3000/auth',
+		url: 'http://localhost:3000/auth',
 		data: {
 			username: req.body.username,
 			password: req.body.password,

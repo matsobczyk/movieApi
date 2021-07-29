@@ -12,7 +12,7 @@ dotenv.config();
 try {
 	mongoose.connect(
 		process.env.DB_CONNECTION,
-		{ useUnifiedTopology: true, useNewUrlParser: true },
+		{ useUnifiedTopology: false, useNewUrlParser: true },
 		() => console.log('DB connection state: ' + mongoose.connection.readyState)
 	)
 } catch (error) {
@@ -34,6 +34,8 @@ app.get('/checkUserType', auth, checkRole("premium", "basic"), (req, res) => {
 resetPostMovieLimiter;
 
 app.listen(8080);
+
+module.exports = app
 
 
 
