@@ -1,0 +1,24 @@
+version: "3.2"
+services:
+  auth:
+    command: node src/server.js
+    image: auth
+    ports:
+      - "3000:3000"
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+    networks: 
+      - movie-app
+  movie-api:
+    stdin_open: true
+    image: movie-api
+    ports: 
+      - "8080:8080"
+    depends_on: 
+      - auth
+    networks: 
+      - movie-app
+
+networks:
+  movie-app:
+    driver: bridge
