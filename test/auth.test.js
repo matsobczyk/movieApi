@@ -22,13 +22,6 @@ describe("POST /auth", () => {
 			})
 			expect(response.headers['content-type']).toEqual(expect.stringContaining("json"))
 		})
-		test("should respond with a token", async () => {
-			const response = await request(app).post("/auth").send({
-				username: sampleUser.username,
-				password: sampleUser.password
-			})
-			expect(response.body.token).toBeDefined();
-		})
 	})
 
 	describe("Without username and password", () => {
