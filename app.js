@@ -33,7 +33,7 @@ app.get('/checkUserType', auth, checkRole("premium", "basic"), (req, res) => {
 
 resetPostMovieLimiter;
 
-app.listen(3000);
+app.listen(8080);
 
 
 

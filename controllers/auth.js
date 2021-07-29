@@ -1,6 +1,5 @@
 const { loginValidation } = require("../middlewares/validation");
 const axios = require('axios')
-const jwt = require('jsonwebtoken')
 
 exports.login = (async (req, res) => {
 	const { error } = loginValidation(req.body);
@@ -8,7 +7,7 @@ exports.login = (async (req, res) => {
 	
 	const user = await axios({
 		method: 'post',
-		url: 'http://localhost:8081/auth',
+		url: 'http://auth:3000/auth',
 		data: {
 			username: req.body.username,
 			password: req.body.password,
